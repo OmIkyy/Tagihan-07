@@ -1,0 +1,99 @@
+{
+  "entities": {
+    "Customer": {
+      "title": "Customer",
+      "description": "Represents a customer's internet billing information and payment status",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerId": { "type": "string" },
+        "name": { "type": "string" },
+        "wa": { "type": "string" },
+        "package": { "type": "string" },
+        "dueDate": { "type": "string" },
+        "status": { "type": "string", "enum": ["LUNAS", "BELUM_BAYAR", "AJUAN_BAYAR", "MENUNGGU_BAYAR", "MENUNGGU_KONFIRMASI"] },
+        "amount": { "type": "number" },
+        "qrisExpiresAt": { "type": "number" },
+        "paymentProofUrl": { "type": "string" },
+        "paymentProofName": { "type": "string" },
+        "paymentHistory": { "type": "array" }
+      },
+      "required": ["id", "customerId", "name", "wa", "package", "dueDate", "status", "amount"]
+    },
+    "MessageTemplate": {
+      "title": "MessageTemplate",
+      "description": "Represents WhatsApp notification template",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "enum": ["TAGIHAN", "PSB"] },
+        "isActive": { "type": "boolean" },
+        "text": { "type": "string" }
+      },
+      "required": ["id", "isActive", "text"]
+    },
+    "PaymentNotification": {
+      "title": "PaymentNotification",
+      "description": "Payment notifications shown on admin panel",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerId": { "type": "string" },
+        "customerName": { "type": "string" },
+        "packageName": { "type": "string" },
+        "amount": { "type": "number" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "read": { "type": "boolean" },
+        "type": { "type": "string", "enum": ["SUCCESS", "QRIS_REQUEST", "PROOF_SUBMITTED"] }
+      },
+      "required": ["id", "customerId", "customerName", "packageName", "amount", "timestamp", "read"]
+    },
+    "InternetPackage": {
+      "title": "InternetPackage",
+      "description": "Internet subscription packages available for selection",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "price": { "type": "number" },
+        "speed": { "type": "string" }
+      },
+      "required": ["name", "price", "speed"]
+    },
+    "AppSettings": {
+      "title": "AppSettings",
+      "description": "Branding and admin credentials",
+      "type": "object",
+      "properties": {
+        "brandName": { "type": "string" },
+        "brandSuffix": { "type": "string" },
+        "logoColor": { "type": "string" },
+        "logoType": { "type": "string", "enum": ["wifi-classic", "wifi-modern", "wifi-shield", "wifi-globe", "custom"] },
+        "customLogoData": { "type": "string" },
+        "adminUsername": { "type": "string" },
+        "adminPassword": { "type": "string" }
+      },
+      "required": ["brandName", "brandSuffix", "logoColor", "logoType", "adminUsername", "adminPassword"]
+    }
+  },
+  "firestore": {
+    "customers": {
+      "schema": { "$ref": "#/entities/Customer" },
+      "description": "Collection of customer billing data"
+    },
+    "templates": {
+      "schema": { "$ref": "#/entities/MessageTemplate" },
+      "description": "Collection of notification templates"
+    },
+    "packages": {
+      "schema": { "$ref": "#/entities/InternetPackage" },
+      "description": "Collection of available subscription packages"
+    },
+    "notifications": {
+      "schema": { "$ref": "#/entities/PaymentNotification" },
+      "description": "Collection of system payment logs/notifications"
+    },
+    "settings": {
+      "schema": { "$ref": "#/entities/AppSettings" },
+      "description": "App settings singleton (e.g., config)"
+    }
+  }
+}

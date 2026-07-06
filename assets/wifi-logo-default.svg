@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="wifi-logo-svg">
+  <!-- Outer Glow Arc -->
+  <path d="M5 12a10 10 0 0 1 14 0" stroke-opacity="0.85" />
+  <!-- Middle Arc -->
+  <path d="M8.5 15.5a5 5 0 0 1 7 0" />
+  <!-- Inner Arc -->
+  <path d="M12 19h.01" stroke-width="4.5" fill="currentColor" />
+  <!-- Sleek Custom Frame Rings representing high speed gigabit networks -->
+  <circle cx="12" cy="12" r="10" stroke-dasharray="2 3" stroke-width="0.75" stroke-opacity="0.4" />
+</svg>

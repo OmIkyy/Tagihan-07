@@ -1,0 +1,6 @@
+{
+  "name": "Billing System Komindo Network",
+  "description": "Sistem informasi tagihan pembayaran layanan internet Komindo Network, lengkap dengan pengaturan pesan WhatsApp, daftar pelanggan, pembayaran QRIS dinamis, dan simulator scan modem.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
